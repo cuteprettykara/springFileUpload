@@ -36,6 +36,12 @@ small {
 
 		$(".fileDrop").on("drop", function(event){
 			event.preventDefault();
+			
+ 			var files = event.originalEvent.dataTransfer.files;
+			
+			var file = files[0];
+
+			console.log(file);
 		});
 
 
