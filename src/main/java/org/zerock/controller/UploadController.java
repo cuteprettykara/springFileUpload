@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -53,5 +55,14 @@ public class UploadController {
 	
 	@RequestMapping(value="/uploadAjax", method=RequestMethod.GET)
 	public void uploadAjax() {
+	}
+	
+	@RequestMapping(value="/uploadAjax", method=RequestMethod.POST)
+	public ResponseEntity<String> uploadAjax(MultipartFile file) {
+		logger.info("originalName: " + file.getOriginalFilename());
+		logger.info("size: " + file.getSize());
+		logger.info("contentType: " + file.getContentType());
+		
+		return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
 	}
 }
