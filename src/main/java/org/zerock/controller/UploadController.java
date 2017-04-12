@@ -50,4 +50,8 @@ public class UploadController {
 		
 		return savedName;
 	}
+	
+	@RequestMapping(value="/uploadAjax", method=RequestMethod.GET)
+	public void uploadAjax() {
+	}
 }
