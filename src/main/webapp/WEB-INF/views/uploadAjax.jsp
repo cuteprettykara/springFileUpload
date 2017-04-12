@@ -54,14 +54,29 @@ small {
 				  processData: false,
 				  contentType: false,
 				  success: function(data){
-					  
-					 alert(data);
-					 
+					  var str = "";
+					  if (checkImageType(data)) {console.log("img");
+						  str = "<div>"
+						  	  + "<img src='displayFile?fileName=" + data + "'/>" + data
+						  	  + "</div>";
+					  } else {console.log("general");
+						  str = "<div>"
+						      + data
+							  + "</div>";
+					  }
+					
+					$(".uploadedList").append(str);
 				  }
 			});	
 		});
 
-
+		function checkImageType(fileName) {
+			
+			var pattern = /jpg|gif|png|jpeg/i;
+			
+			return fileName.match(pattern);
+			
+		}
 
 		
 		
