@@ -57,7 +57,9 @@ small {
 					  var str = "";
 					  if (checkImageType(data)) {console.log("img");
 						  str = "<div>"
+						      + "<a href='displayFile?fileName="+getImageLink(data)+"'>"
 						  	  + "<img src='displayFile?fileName=" + data + "'/>" + data
+						  	  + "</a>"
 						  	  + "</div>";
 					  } else {console.log("general");
 						  str = "<div>"
@@ -89,9 +91,17 @@ small {
 			
 		}
 		
-
-		
-		
+		function getImageLink(fileName){
+			
+			if(!checkImageType(fileName)){
+				return;
+			}
+			var front = fileName.substr(0,12);
+			var end = fileName.substr(14);
+			
+			return front + end;
+			
+		}
 	</script>
 
 </body>
