@@ -41,7 +41,24 @@ small {
 			
 			var file = files[0];
 
-			console.log(file);
+			//console.log(file);
+			
+			var formData = new FormData();
+			formData.append("file", file);
+			
+			$.ajax({
+				  type: 'POST',
+				  url: '/uploadAjax',
+				  dataType:'text',
+				  data: formData,
+				  processData: false,
+				  contentType: false,
+				  success: function(data){
+					  
+					 alert(data);
+					 
+				  }
+			});	
 		});
 
 
