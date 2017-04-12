@@ -60,16 +60,36 @@ small {
 						      + "<a href='displayFile?fileName="+getImageLink(data)+"'>"
 						  	  + "<img src='displayFile?fileName=" + data + "'/>" + data
 						  	  + "</a>"
+						  	  + "<small data-src=" + data + ">X</small>"
 						  	  + "</div>";
 					  } else {console.log("general");
 						  str = "<div>"
 						      + "<a href='displayFile?fileName=" + data + "'>" + getOriginalName(data) + "</a>"
+						      + "<small data-src=" + data + ">X</small>"
 							  + "</div>";
 					  }
 					
 					$(".uploadedList").append(str);
 				  }
 			});	
+		});
+		
+		$(".uploadedList").on("click", "small", function(event){
+			var that = $(this);
+			
+			$.ajax({
+				url: 'deleteFile',
+				type: 'POST',
+				dataType:'text',
+				data: {fileName:$(this).attr("data-src")},
+				success: function(result){
+					if (result == 'deleted') {
+						that.parent("div").remove();
+					} else {
+						alert("delete failed");
+					}
+				}
+			});
 		});
 
 		function checkImageType(fileName) {
