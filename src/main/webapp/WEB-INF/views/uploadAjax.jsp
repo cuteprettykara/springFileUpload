@@ -61,7 +61,7 @@ small {
 						  	  + "</div>";
 					  } else {console.log("general");
 						  str = "<div>"
-						      + data
+						      + "<a href='displayFile?fileName=" + data + "'>" + getOriginalName(data) + "</a>"
 							  + "</div>";
 					  }
 					
@@ -78,7 +78,16 @@ small {
 			
 		}
 
-		
+		function getOriginalName(fileName){	
+
+			if(checkImageType(fileName)){
+				return;
+			}
+			
+			var idx = fileName.indexOf("_") + 1 ;
+			return fileName.substr(idx);
+			
+		}
 		
 
 		
